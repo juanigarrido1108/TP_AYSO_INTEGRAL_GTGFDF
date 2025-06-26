@@ -1,9 +1,0 @@
-- name: "Sudoers_{{ grupo_nombre }} : Agregar al grupo {{ grupo_nombre }} para ejecutar sudo sin clave"
-  ansible.builtin.lineinfile:
-    path: "/etc/sudoers.d/{{ grupo_nombre }}" # Nombre del archivo sudoers.d basado en el grupo
-    state: present
-    line: '%{{ grupo_nombre }} ALL=(ALL) NOPASSWD: ALL' # La línea que da permisos sin clave
-    create: yes # Crea el archivo si no existe
-    mode: '0440' # Permisos recomendados para archivos sudoers.d
-    validate: 'visudo -cf %s' # Valida la sintaxis del archivo antes de guardarlo
-  become: yes # Asegura que esta tarea se ejecute con privilegios de root

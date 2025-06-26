@@ -1,9 +1,0 @@
-[testing]
-192.168.56.5 ansible_user=vagrant ansible_python_interpreter=/usr/bin/python3 
-
-#[desarrollo]
-#no-existe.com
-
-[produccion]
-192.168.56.6 ansible_user=vagrant ansible_python_interpreter=/usr/bin/python3
-
