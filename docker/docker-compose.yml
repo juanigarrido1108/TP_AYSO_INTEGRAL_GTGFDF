@@ -2,13 +2,16 @@ services:
   web:
     image: juanigarrido1108/tp-div314-grupo-gtgfdf:latest
     # Imagen del líder (actualmente activa)
+    
+    
     # image: ezequielgg/tp-div314-grupo-gtgfdf:latest
-
-    # Otras imágenes del grupo (descomentar para probar otra)
     # image: micaelfrete/tp-div314-grupo-gtgfdf:latest
     # image: torrestomasivan/tp-div314-grupo-gtgfdf:latest
     # image: RFunes22/tp-div314-grupo-gtgfdf:latest
     # image: Lautaguardia29/tp-div314-grupo-gtgfdf:latest
+
+    
+   
 
     ports:
       - "8081:80"
