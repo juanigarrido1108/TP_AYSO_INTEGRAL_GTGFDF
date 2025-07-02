@@ -1,0 +1,11 @@
+Docker images: muestra información sobre las imágenes que tenemos en nuestro dispositivo.
+Docker ps: Muestra los contenedores que están corriendo en ese momento.
+Docker ps -a: Muestra todos los contenedores que tienes en tu sistema Docker, tanto los que están ejecutándose actualmente como los que están detenidos.
+docker login:
+docker tag mi-app-local miusuario/mi-super-app:1.0 :
+docker push miusuario/mi-super-app:1.0 :
+docker search miusuario/mi-super-app :
+Docker compose up: 
+
+ipconfig: Comando de Windows para ver las IP de la maquina donde se esta parado
+

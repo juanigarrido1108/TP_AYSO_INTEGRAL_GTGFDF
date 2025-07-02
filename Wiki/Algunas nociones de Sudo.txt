@@ -1,0 +1,9 @@
+SUDO VAGRANT:
+Vagrant - Usuario afectado
+ALL (primera) - En todos los hosts
+(ALL) - Como cualquier usuario
+NOPASSWD: - Sin pedir contraseña
+ALL (última) - Todos los comandos
+
+
+sudoers.d: para evitar riesgos en la configuración original del sudo/riesgo de no poder volver a usar el comando correctamente
