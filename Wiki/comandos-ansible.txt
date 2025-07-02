@@ -1,0 +1,15 @@
+ssh-keygen -t ed25519:
+Hace que el archivo playbook que es el archivo donde están mis órdenes (por ejemplo, instalar algunos paquetes) se ejecuten en el host 2 (que está listado en el archivo INVENTORY. En ese inventory estarán todos los servidores
+
+ansible-playbook -i inventory playbook.yml:
+Este comando
+-Lee el inventario para saber en qué servidores trabajar
+-Conecta a los hosts especificados (por SSH normalmente)
+-Ejecuta las tareas definidas en el playbook.yml
+
+ansible all -i inventory -m ping:
+Controla que todos los servidores están conectados entre sí
+
+ansible-galaxy init mi_rol:
+Genera el directorio de los roles, que son las tareas que tenemos que llevar a cabo
+
