@@ -1,10 +1,10 @@
 services:
   web:
-    image: juanigarrido1108/tp-div314-grupo-gtgfdf:latest
+    # image: juanigarrido1108/tp-div314-grupo-gtgfdf:latest
     # Imagen del líder (actualmente activa)
     
     
-    # image: ezequielgg/tp-div314-grupo-gtgfdf:latest
+    image: ezequielgg/tp-div314-grupo-gtgfdf:latest
     # image: micaelfrete/tp-div314-grupo-gtgfdf:latest
     # image: torrestomasivan/tp-div314-grupo-gtgfdf:latest
     # image: RFunes22/tp-div314-grupo-gtgfdf:latest
