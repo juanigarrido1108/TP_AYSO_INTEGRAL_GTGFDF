@@ -1,0 +1,47 @@
+Cree el repositorio de github de manera privada y sin un readme predefinido.
+
+Una vez realizado esto, cree un repositorio con el mismo nombre en la pc de manera local.
+cree una clave ssh con el siguiente comando en bash:
+
+
+ssh-keygen -t rsa -b 4096 -C "juanigarrido1999@gmail.com"
+tres enter sin designar una ruta para que se guarde de manera predeterminada.
+
+Para ver la clave ssh hay dos formas que encontre:
+Guardarlo directo en el portapapeles y pegarlo donde lo precisemos (en este caso en la creacion de key ssh para github)
+ clip < ~/.ssh/id_rsa.pub
+
+o verlo con un cat hacia la ruta
+cat ~/.ssh/id_rsa.pub
+
+
+Para confirmar que esté ok de manera local usar el siguiente comando, la consola deberia “saludarte” con tu nombre de usuario de github.
+
+ssh -T git@github.com
+
+Me aseguro de que mi repositorio remoto esté por ssh apuntando con el link provisto por el repo con la opcion ssh:
+
+git remote set-url origin git@github.com:juanigarrido1108/TP_AYSO_INTEGRAL.git
+
+me aseguro que las url que estan linkeadas al remoto comiencen con git@github.com (como las url de ssh)
+
+git remote -v
+
+
+
+
+
+REALIZO EL COMMIT DEL PRIMER README.MD
+
+echo "# TP AysO integral - grupo Garrido - Torres - Guardia - Funes - Del Valle - Frete
+" > README.md
+
+git add README.md
+
+git commit -m "Agrega README inicial"
+
+PUSH HACIA EL MAIN
+
+ME POSICIONO EN RAMA MAIN
+git branch -M main
+git push -u origin main

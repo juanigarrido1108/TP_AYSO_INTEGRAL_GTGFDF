@@ -1,0 +1,15 @@
+Cómo traer la rama devN del repositorio remoto al repositorio local
+-----------------------------------
+git fetch origin devN:devN
+git checkout devN
+
+
+Configurar el remote para traer varias ramas
+------------------------------------------------------
+git remote set-branches origin main devN
+git fetch origin
+git checkout --track origin/devN
+Explicación breve:
+- 'git fetch origin devN:devN' #crea localmente devN basado en origin/devN.
+- 'git remote set-branches ...' #amplía la configuración del remote para fetch.
+- 'git checkout --track origin/devN' #crea una rama local que rastrea la remota

@@ -1,0 +1,341 @@
+sudo useradd -m -s /bin/bash klaime
+
+sudo passwd klaime
+-contraseña
+-contraseña
+
+su - klaime 	-> cambiar de usuario
+-contraseña
+
+id	-> Para ver si mi usuario esta en el grupo docker
+o
+grep klaime /etc/group
+
+sudo usermod -aG docker klaime
+-contraseña
+
+sudo ls -l /etc/sudoers*
+
+sudo cat /etc/sudoers.d/vagrant | sed "s/vagrant/grupo1/g" | sudo tee /etc/sudoers.d/grupo1
+
+-> g de global - agregar grupo1
+
+sudo ls -ld /etc/sudoers.d/grupo1 	-> Para ver los permisos de la carpeta referida
+
+sudo cat /etc/sudoers.d/grupo1
+
+sudo usermod -aG grupo1 	-> Todavía no creamos el grupo
+
+sudo groupadd grupo1
+
+sudo usermod -aG grupo1 klaime 	-> Agregamos nuestro usuario al nuevo grupo creado
+
+id klaime 	-> Corroboramos si tenemos el usuario en el grupo
+
+sudo usermod -aG docker klaime	-> 
+
+sudo su - klaime
+
+**PRECONDICIONES DEL PARCIAL (VER PDF)**
+
+cdmod +x ARHIVO/ARCHIVO_*	-> Dar permisos de execucion a un archivo
+
+sudo fdisk -l -> Para ver los discos
+
+-------------------------------------------------------------------------
+
+1 particion = 1pv
+1pv = solo puede estar en 1VG
+1 VG Está compuesto por 1 o muchos PVs
+1 VG contiene 0 o muchos LVs
+
+-> un LV solamente puede estar dentro de un VG
+
+sdv = 3gb
+sdc = 1gb
+sdd = 1gb
+
+vim ARCHIVO/Punto_*
+
+#!/bin/bash
+
+sudo fdisk /dev/sde << EOF
+n
+p
+1
+	-> Desde donde
++512M	-> Hasta cuando
+t
+82
+n
+p
+2
+
++2G	-> Hasta donde
+t
+2
+8e	-> LVM
+n
+p
+3
+
+	->Hasta donde vacío para que use lo que resta
+t
+3
+8e
+w
+EOF
+
+x -> Para salir
+
+-----------------------------------------------------------
+
+sudo fdisk -l /dev/sde	-> Para ver las particiones creadas
+
+sudo fdisk -l /dev/sde |grep lvm -i	-> -i para que no sea case sensitive
+
+----------------------------------------
+grep filtra filas - awk filtra columnas
+----------------------------------------
+
+sudo fdisk -l /dev/sde |grep lvm -i |awk '{print $1}'
+
+sudo fdisk -l /dev/sde |grep lvm -i |awk '{print "pvcreate "$1}' | /bin/bash
+
+sudo pvs
+
+sudo vgcreate vg_datos /dev/sde3	-> volume group "vg_Datos" created
+
+sudo vgs 	-> Muestra cuantos pv tiene el vg
+
+sudo lvcreate -L +10M vg_datos -n lv_docker
+
+sudo lvs
+
+sudo fdisk -l 	-> Copiamos la ruta de la particion creada
+
+sudo mkfs.ext4 "rutaCopiada"
+
+sudo ls -l /var/lib/docker/
+
+sudo mount "rutaCopiada" /var/lib/docker
+
+----------------------------------------------------------
+DOCKER
+
+docker run -d -p 81:80 nginx
+
+sudo ls -l /var/lib/docker/tmp/
+
+sudo umount /var/lib/docker
+
+sudo mount /dev/mapper/vg_datos-lv_docker /var/lib/docker
+
+sudo systemctl restart docker 	-> Restart al servicio docker
+
+docker run -d -p 81:80 nginx	-> Hay que expandir el LV, necesita más almacenamiento
+
+pvs
+
+sudo lvextend -l +100%FREE /dev/mapper/vg_datos-lv_docker	-> -l minuscula porque quiero el 100%
+
+df -h	-> Comprueba el espacio disponible, el utilizado y la capacidad total de archivos montados.
+
+sudo resize2fs /dev/mapper/vg_datos-lv_docker 	-> resize -> redimensiona sistemas de archivos
+
+ip a	-> Muestra y manipula las configuraciones de red de un sistema
+
+**acceder a dockerhub, loguearse y pasarle el token generado**
+
+ll
+
+cat dockerfile 	->
+
+echo "" >> dockerfile
+
+cat dockerfile
+
+ls -l web/
+
+vim web/index.html
+
+docker build -t **usuario de dockerhub**/web1:latest -t **usuario**/web1:v1 .	-> Genera la Imagen
+
+docker image list
+
+docker push **usuario**/web1 -a
+
+----------------------------------------------------------------------------
+
+sudo ls -l /home/vagrant/compartido
+
+sudo ls -l /home/vagrant/compartido/python	-> python = carpeta con archivos
+
+sudo cp -r /home/vagrant/compartido/python .
+
+sudo chown -R *usuario*:*usuario* python	-> usuario = nombre usuario de la VM
+
+mkdir prueba_docker
+
+mv python prueba_docker/
+
+docker pull alpine
+
+docker images
+
+vim dockerfile	-> 	FROM python:3.14.0b3-alpine3.21
+
+			WORKDIR /usr/src/app
+
+			COPY python .
+
+			CMD [ "python", "./main.py" ]
+
+docker build -t usuario/app2 .		-> usuario de docker
+
+docker run usuario/app:v2
+
+docker ps -a	-> -a para ver si se ejecuto
+
+cd UTN-FRA_SO_Examenes/202408/docker
+
+cat docker-compose.yml
+
+docker images
+
+vim docker-compose.yml ->	
+version: '3'
+
+	services:
+		web:
+			image: usuario/web1
+			ports:
+				- 80:80
+				- 443:443
+			volumes:
+				- web/file/info.txt:/usr/share/nginx/html/file/info.txt
+
+docker compose up -d
+
+vim docker-compose.yml ->
+
+version: '3'
+
+	services:
+		web:
+			image: usuario/web1
+			ports:
+				- 80:80
+				- 443:443
+			volumes:
+			 - web/file/info.txt:/usr/share/nginx/html/file/info.txt
+
+docker compose up -d
+
+echo hola >> web/file/info.txt		-> Le agregamos hola al archivo
+
+----------------------------------------------------------------------------------
+ANSIBLE
+
+cd ansible/
+ll
+
+cat README.md		-> Ver como ejecutar
+
+ansible-playbook -i inventory/hosts playbook.yml	-> Esta forma no le gusta al profesor
+
+#ansible-playbook -i inventory/hosts playbook.yml
+
+cat inventory/hosts
+
+ssh localhost		-> localhost = ip
+
+ssh-keygen -t ed25519	-> Genera claves publicas y privadas
+
+ssh + tab + tab
+
+ssh-copy-id 192.168.56.5
+-contraseña de usuario
+
+ssh-copy-id vagrant@192.168.56.6	-> 
+	"yes"
+	-contraseña vagrant
+
+vim inventory/hosts	->
+
+[all:children]
+testing
+produccion
+
+[testing]
+127.0.0.1
+
+[produccion]
+#localhost ansible_connection=local	<- Esto no lo va pedir
+192.168.56.6 ansible_user: vagrant
+
+~
+
+ssh 127.0.0.1		-> Fingerprint: yes
+
+ansible-playbook -i inventory/hosts playbook.yml
+
+cat playbook.yml
+
+cat roles/2Precuperatorio/tasks/main.yml
+
+vim roles/2Precuperatorio/tasks/main.yml
+
+ - name: "Rol: 2Precuperatorio"
+   debug:
+       : "Inicio de tareas del rol: 2Precuperatorio"
+
+
+ - name: "Agrego archivo desde template"
+   template:
+      src: info_ansible.j2
+      dest: /tmp/info_ansible.txt
+~
+~
+
+vim .vimrc
+
+cd -
+
+vim roles/2Precuperatorio/tasks/main.yml
+
+ll roles/2Precuperatorio
+
+mkdir roles/2Precuperatorio/templates
+
+cat roles/2Precuperatorio/tasks/main.yml
+
+touch roles/2Precuperatorio/templates/info_ansible.j2
+
+vim roles/2Precuperatorio/templates/info_ansible.j2	<- Agregamos texto
+
+ansible-playbook -i inventory/hosts playbook.yml
+
+cat /tmp/info_ansible.txt
+
+ansible-galaxy role --help
+
+ansible-galaxy role init --help
+
+ansible-galaxy role init roles/instala-tools_*apellido*
+
+vim roles/instala-tools_*apellido*
+
+vim roles/instala-tools_*apellido*/tasks/main.yml
+
+cat playbook.yml
+
+vim playbook.yml
+
+cat playbook.yml
+
+ll roles/
+
+ansible-playbook -i inventory/hosts playbook.yml	-> Ejecutar apt update
+
+

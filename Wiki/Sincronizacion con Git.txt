@@ -1,0 +1,80 @@
+1. Configurar Git (metadatos)
+En cada equipo, antes de cualquier otra cosa, que comprueben o ejecuten:
+git config --global user.name "Nombre_Completo"
+git config --global user.email "fsu.email@ejemplo.com"
+
+Esto solo sirve para firmar commits; no es lo que autentica el push.
+
+2. Autenticación SSH (recomendada)
+Generar par de claves (si no lo tienen):
+
+ssh-keygen -t rsa -b 4096 -C "su.email@ejemplo.com"
+ Pulsar Enter para ruta por defecto, y (opcional) dejar passphrase en blanco.
+
+
+Copiar la clave pública al portapapeles:
+
+clip < ~/.ssh/id_rsa.pub   # en Git Bash sobre Windows
+
+ o
+
+cat ~/.ssh/id_rsa.pub      # en macOS/Linux, y copiar manualmente
+
+Pegarla en GitHub
+
+
+Ir a: GitHub → Settings → SSH and GPG keys → New SSH key
+
+
+Pegar la clave, ponerle un título (“Clave SSH R2”, por ejemplo) y guardar.
+
+
+Clonar el repo por SSH:
+
+git clone git@github.com:juanigarrido1108/TP_AYSO_INTEGRAL_GTGFDF.git
+ Ya no les va a pedir credenciales al hacer push.
+
+
+
+Ahora si, el instructivo para los push de cada integrante:
+
+Instrucciones para cada integrante
+
+Clonar el repositorio (si ya lo tenes no hace falta)
+
+en consola:
+git clone git@github.com:juanigarrido1108/TP_AYSO_INTEGRAL_GTGFDF.git
+
+Cambiar a la rama dev1
+
+git fetch
+git checkout dev1
+
+Crear su propia rama
+
+Nombrala según tu número de integrante, por ejemplo dev2 si sos el miembro 2:
+
+git checkout -b dev2
+
+Editar el archivo donde corresponda
+
+Agregar en UNA SOLA LÍNEA tu información en el README.md 
+	
+Nombre y Apellido: Juan Garrido – Legajo: 118621
+Commit & Push
+
+echo "#Nombre y apellido: Juan Garrido - Legajo: 118621" >> README.md
+git add .
+git commit -m "Agrega R<n>: Juan Garrido – Legajo 12345"
+git push -u origin dev2
+
+
+
+Abrir Pull Request
+En GitHub, vas a ver un banner que te invita a “Compare & pull request”.
+
+Abrilo hacia la rama main para que impacte en ella.
+
+Poné un título claro, p. ej. “R2 – agregado de datos de Juan Garrido”.
+
+Asigná el PR al líder para que haga el merge en master.
