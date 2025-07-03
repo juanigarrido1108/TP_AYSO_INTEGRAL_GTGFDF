@@ -1,0 +1,34 @@
+
+---
+- hosts: all
+  become: true
+
+  vars:
+    grupo_nombre: GTGFDF
+    division: 314
+    fecha: "{{ ansible_date_time.date }}"
+    distro: "{{ ansible_distribution }}"
+    cores: "{{ ansible_processor_cores }}"
+    integrantes:
+      - { rol: "R1", nombre: "Lautaro", apellido: "Guardia", descripcion_rol: "Líder" }
+      - { rol: "R2", nombre: "Juan", apellido: "Garrido", descripcion_rol: "LVM" }
+      - { rol: "R3", nombre: "Tomas", apellido: "Torres", descripcion_rol: "Bash Scripting" }
+      - { rol: "R4", nombre: "Micael", apellido: "Frete", descripcion_rol: "ANSIBLE" }
+      - { rol: "R5", nombre: "Ezequiel", apellido: "Gomez", descripcion_rol: "Docker" }
+      - { rol: "R6", nombre: "Rodrigo", apellido: "Funes", descripcion_rol: "Verificaciones" }
+
+  pre_tasks:
+    - name: "Inicio del playbook"
+      debug:
+        msg: "Iniciando la ejecución del TP AySO"
+
+  roles:
+    - TP_INI
+    - Alta_Usuarios_GTGFDF
+    - Sudoers_GTGFDF
+    - Instala-tools_GTGFDF
+
+  post_tasks:
+    - name: "Fin del playbook"
+      debug:
+        msg: "Finalizó la ejecución del TP AySO"
