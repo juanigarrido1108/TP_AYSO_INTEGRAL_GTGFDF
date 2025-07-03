@@ -7,6 +7,7 @@ Vagrant.configure("2") do |config|
     vmHost1.vm.box = "ubuntu/jammy64"
     vmHost1.vm.hostname = "vmHost1"
 
+    #_____________________________________________________________________________________________
     #vmHost1.vm.network "private_network", :name => '', ip: "192.168.56.5", virtualbox__intnet: true
     #vmHost1.vm.network "private_network", :name =>  '', ip: "192.168.56.5", virtualbox__intnet: true
     vmHost1.vm.network "private_network", ip: "192.168.56.5"
