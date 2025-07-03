@@ -12,11 +12,6 @@ EOF
 
 echo "2. Generar claves SSH sin interacción…"
 
-# Instalo SSHPASS PARA NO SOLICITAR CONFIRMACION NI CLAVES
-
-sudo apt-get update
-sudo apt-get install -y sshpass
-
 # genera la clave SI NO existe (quiet, sin preguntar)
 [ -f ~/.ssh/id_rsa ] || ssh-keygen -q -t rsa -N "" -f ~/.ssh/id_rsa
 
@@ -38,22 +33,25 @@ done
 echo "Passwordless SSH y sudoers configurados con éxito."
 
 # 4. Instalar software necesario
-echo
-echo "4. Instalando software necesario"
-echo "Instalando software en Ubuntu..."
-ssh vagrant@"$UBUNTU" << 'EOF'
-sudo apt update
-sudo apt install -y git vim curl wget docker.io python3 nodejs nginx mysql-server htop tree net-tools
-sudo systemctl enable docker
-sudo usermod -aG docker vagrant
-EOF
+# Este paso lo coloque en otro script que se encarga de esto. Para facilitar el testing del cruce de ssh.
+#
+# 
+# echo
+# echo "4. Instalando software necesario"
+# echo "Instalando software en Ubuntu..."
+# ssh vagrant@"$UBUNTU" << 'EOF'
+# sudo apt update
+# sudo apt install -y git vim curl wget docker.io python3 nodejs nginx mysql-server htop tree net-tools
+# sudo systemctl enable docker
+# sudo usermod -aG docker vagrant
+# EOF
 
-echo "Instalando software en Fedora..."
-ssh vagrant@"$FEDORA" << 'EOF'
-sudo dnf update -y
-sudo dnf install -y git vim curl wget docker python3 nodejs nginx mysql-server htop tree net-tools
-sudo systemctl enable docker
-sudo usermod -aG docker vagrant
-EOF
+# echo "Instalando software en Fedora..."
+# ssh vagrant@"$FEDORA" << 'EOF'
+# sudo dnf update -y
+# sudo dnf install -y git vim curl wget docker python3 nodejs nginx mysql-server htop tree net-tools
+# sudo systemctl enable docker
+# sudo usermod -aG docker vagrant
+# EOF
 
-echo "Software instalado en ambas VMs"
+# echo "Software instalado en ambas VMs"
