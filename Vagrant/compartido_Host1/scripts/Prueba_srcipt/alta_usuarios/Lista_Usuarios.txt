@@ -1,0 +1,14 @@
+#--------------------#
+#
+# Listado de Usuarios separando campos por coma.
+#
+# Nombre_Usuario , Grupo_Primario , Directorio_Home
+#
+#--------------------#
+dev1,gDevs,/work/dev1
+dev2,gDevs,/work/dev2
+dev3,gDevs,/work/dev3
+dev4,gDevs,/work/dev4
+dev5,gDevs,/work/dev5
+dev6,gTest,/work/dev6
+supervisor,gSupervisores,/work/Supervisor
