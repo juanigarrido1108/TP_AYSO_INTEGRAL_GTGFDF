@@ -64,3 +64,20 @@ Thu Jul 10 01:52:00 UTC 2025: El usuario 'supervisor' ha sido creado correctamen
 El grupo 'gSupervisores' no existe. Creándolo...
 Thu Jul 10 01:52:00 UTC 2025: Usuario:'supervisor' agregado a Gurpo:'gSupervisores' 
 Thu Jul 10 01:52:00 UTC 2025: Grupo:'' ha sido eliminado y el grupo primario definido ahora es 'gSupervisores' 
+Thu Jul 10 18:40:48 UTC 2025: El usuario 'dev1' ha sido creado correctamente.
+El grupo 'gDevs' no existe. Creándolo...
+Thu Jul 10 18:40:48 UTC 2025: Usuario:'dev1' agregado a Gurpo:'gDevs' 
+Thu Jul 10 18:40:48 UTC 2025: El usuario 'dev2' ha sido creado correctamente.
+Thu Jul 10 18:40:48 UTC 2025: Usuario:'dev2' agregado a Gurpo:'gDevs' 
+Thu Jul 10 18:40:48 UTC 2025: El usuario 'dev3' ha sido creado correctamente.
+Thu Jul 10 18:40:48 UTC 2025: Usuario:'dev3' agregado a Gurpo:'gDevs' 
+Thu Jul 10 18:40:48 UTC 2025: El usuario 'dev4' ha sido creado correctamente.
+Thu Jul 10 18:40:48 UTC 2025: Usuario:'dev4' agregado a Gurpo:'gDevs' 
+Thu Jul 10 18:40:48 UTC 2025: El usuario 'dev5' ha sido creado correctamente.
+Thu Jul 10 18:40:48 UTC 2025: Usuario:'dev5' agregado a Gurpo:'gDevs' 
+Thu Jul 10 18:40:48 UTC 2025: El usuario 'dev6' ha sido creado correctamente.
+El grupo 'gTest' no existe. Creándolo...
+Thu Jul 10 18:40:48 UTC 2025: Usuario:'dev6' agregado a Gurpo:'gTest' 
+Thu Jul 10 18:40:49 UTC 2025: El usuario 'supervisor' ha sido creado correctamente.
+El grupo 'gSupervisores' no existe. Creándolo...
+Thu Jul 10 18:40:49 UTC 2025: Usuario:'supervisor' agregado a Gurpo:'gSupervisores' 
