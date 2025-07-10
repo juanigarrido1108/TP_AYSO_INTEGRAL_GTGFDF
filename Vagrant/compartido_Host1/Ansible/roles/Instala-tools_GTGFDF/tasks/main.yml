@@ -1,0 +1,27 @@
+
+- name: "Instala-tools_{{ grupo_nombre }} : Instalar programas con apt (Debian/Ubuntu)"
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes # Esto es bueno para que apt actualice su lista de paquetes
+  loop:
+    - htop
+    - tmux
+    - speedtest-cli
+  when: ansible_facts['pkg_mgr'] == 'apt' # SOLO SI el sistema usa 'apt'
+  become: yes
+  loop_control:
+    label: "Instalando {{ item }} (APT)"
+
+- name: "Instala-tools_{{ grupo_nombre }} : Instalar programas con dnf (Fedora/CentOS)"
+  ansible.builtin.dnf:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - htop
+    - tmux
+    - speedtest-cli
+  when: ansible_facts['pkg_mgr'] == 'dnf' # SOLO SI el sistema usa 'dnf'
+  become: yes
+  loop_control:
+    label: "Instalando {{ item }} (DNF)"

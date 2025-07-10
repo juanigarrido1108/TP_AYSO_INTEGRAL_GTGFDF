@@ -1,0 +1,11 @@
+
+Nombre Grupo: {{ grupo_nombre }}
+División: {{ division }}
+Fecha: {{ fecha }}
+-------------------------
+Distribución: {{ distro }}
+Cantidad de Cores: {{ cores }}
+-------------------------
+{% for miembro in integrantes %}
+{{ miembro.rol }}: Nombre: {{ miembro.nombre }} Apellido: {{ miembro.apellido }} (Rol: {{ miembro.descripcion_rol }})
+{% endfor %}
