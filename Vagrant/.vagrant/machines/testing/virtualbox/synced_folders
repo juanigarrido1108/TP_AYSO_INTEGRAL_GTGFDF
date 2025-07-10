@@ -1,1 +1,0 @@
-{"virtualbox":{"/home/vagrant/compartido":{"owner":"vagrant","group":"vagrant","guestpath":"/home/vagrant/compartido","hostpath":"D:/so/repogit/TP_AYSO_INTEGRAL_GTGFDF/Vagrant/compartido_Host1","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"D:/so/repogit/TP_AYSO_INTEGRAL_GTGFDF/Vagrant","disabled":false,"__vagrantfile":true}}}
